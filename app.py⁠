@@ -6,7 +6,7 @@ from plotly.subplots import make_subplots
 from datetime import datetime, timedelta
 
 st.set_page_config(page_title="Momentum Trading Setup", layout="wide")
-st.title("📈 SROP-Style Momentum Dashboard")
+st.title("SROP-Style Momentum Dashboard")
 
 SECTORS = {
     "Nifty IT": "^CNXIT",
@@ -59,7 +59,7 @@ fig_sectors = go.Figure(go.Bar(
     orientation='h',
     marker_color=['red' if x < 0 else 'green' for x in sector_df['% Change']]
 ))
-fig_sectors.update_layout(title=f"Sector Performance (Past {lookback_days} Days)", height=400)
+fig_sectors.update_layout(title="Sector Performance", height=400)
 st.plotly_chart(fig_sectors, use_container_width=True)
 
 st.header("2. Stock Picker & Volume/VWAP Analysis")
@@ -99,6 +99,6 @@ with col2:
             fig.add_trace(go.Scatter(x=df.index, y=df['Vol_MA'], line=dict(color='blue', width=1.5), name='Vol MA'), 
                           row=2, col=1)
 
-            fig.update_layout(title=f"{selected_stock} - 15m Chart with VWAP & Volume Breakout", 
+            fig.update_layout(title="15m Chart with VWAP & Volume Breakout", 
                               xaxis_rangeslider_visible=False, height=600)
             st.plotly_chart(fig, use_container_width=True)
